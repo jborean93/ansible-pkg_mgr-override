@@ -1,0 +1,9 @@
+- hosts: localhost
+  tasks:
+  - name: inject pkg_mgr from action plugin - no module execution needed
+    jordan.package.facts_action:
+
+  - name: package will now call jordan.package.mgr
+    package:
+      name: test
+      state: present

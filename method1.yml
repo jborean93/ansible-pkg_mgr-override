@@ -1,0 +1,15 @@
+- name: injects pkg_mgr through gather_facts
+  hosts: localhost
+  vars:
+    # This can be set in the inventory as a host/group_var
+    ansible_facts_modules:
+    # smart will have setup be called after custom module setting pkg_mgr
+    # back to the default so cannot be used.
+    # - smart
+    - setup  # Must be set before your custom facts module
+    - jordan.package.facts_module
+  tasks:
+  - name: will use facts from facts_module to call jordan.package.mgr
+    package:
+      name: test
+      state: present
